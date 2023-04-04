@@ -3,5 +3,10 @@ package br.edu.impacta.campuslib.repository;
 import br.edu.impacta.campuslib.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface StudentRepo extends JpaRepository<Student, Long> {
+import java.util.Optional;
+
+public interface StudentRepository extends JpaRepository<Student, Long> {
+    void deleteStudentById(Long id);
+
+    Optional<Student> findStudentById(Long id);
 }
