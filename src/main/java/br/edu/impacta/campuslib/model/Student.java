@@ -3,18 +3,20 @@ package br.edu.impacta.campuslib.model;
 import jakarta.persistence.Id;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 @Entity
 public class Student implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(nullable = false, updatable = false)
-    private Long id;
+    private UUID id;
 
     @Column(name = "name")
     private String name;
@@ -22,7 +24,7 @@ public class Student implements Serializable {
     @Column(name = "studentGroup")
     private String studentGroup;
 
-    @Column(name = "studentID", nullable = false, updatable = false)
+    @Column(name = "idCard", nullable = false, updatable = false)
     private int idCard;
 
     public Student() {
@@ -34,11 +36,11 @@ public class Student implements Serializable {
         this.idCard = idCard;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

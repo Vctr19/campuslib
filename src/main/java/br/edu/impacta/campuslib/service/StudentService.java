@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class StudentService {
@@ -17,7 +18,7 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public Student addEstudent(Student student){
+    public Student addStudent(Student student){
         return studentRepository.save(student);
     }
 
@@ -29,12 +30,12 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-    public Student findStudentById(Long id){
+    public Student findStudentById(UUID id){
         return studentRepository.findStudentById(id)
                 .orElseThrow(() -> new UserNotFoundException("Studend by ID " + " was not found"));
     }
 
-    public void deleteStudent(Long id){
+    public void deleteStudent(UUID id){
         studentRepository.deleteStudentById(id);
     }
 }
