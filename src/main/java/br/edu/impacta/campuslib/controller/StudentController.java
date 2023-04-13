@@ -1,4 +1,4 @@
-package br.edu.impacta.campuslib;
+package br.edu.impacta.campuslib.controller;
 
 import br.edu.impacta.campuslib.model.Student;
 import br.edu.impacta.campuslib.service.StudentService;
@@ -11,10 +11,10 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/student")
-public class StudentResource {
+public class StudentController {
     private final StudentService studentService;
 
-    public StudentResource(StudentService studentService) {
+    public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
