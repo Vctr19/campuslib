@@ -1,15 +1,13 @@
 package br.edu.impacta.campuslib.model;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
+@Table(name = "tbl_student")
 public class Student implements Serializable {
 
     @Id
