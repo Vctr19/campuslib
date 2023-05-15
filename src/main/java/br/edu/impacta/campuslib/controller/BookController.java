@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/book")
@@ -36,6 +37,26 @@ public class BookController {
     @PostMapping("/save")
     public RedirectView saveBook(@ModelAttribute Book book){
         bookService.addBook(book);
+        return new RedirectView("/book/all");
+    }
+
+    @GetMapping("/edit/{id}")
+    public ModelAndView editBookForm(@PathVariable UUID id){
+        ModelAndView mav = new ModelAndView("edit-book-form");
+        mav.addObject("book", bookService.findBookById(id));
+        return mav;
+    }
+
+    @PostMapping("/update/{id}")
+    public RedirectView updateBook(@PathVariable UUID id, @ModelAttribute("book") Book book){
+        Book oldbook = bookService.findBookById(id);
+        bookService.updateBook(oldbook, book);
+        return new RedirectView("/book/all");
+    }
+
+    @GetMapping("/delete/{id}")
+    public RedirectView deleteBook(@PathVariable UUID id){
+        bookService.deleteBook(id);
         return new RedirectView("/book/all");
     }
 }

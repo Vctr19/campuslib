@@ -4,6 +4,7 @@ import br.edu.impacta.campuslib.model.Student;
 import br.edu.impacta.campuslib.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -28,12 +29,6 @@ public class StudentController {
         return mav;
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Student> getStudentById(@PathVariable("id") UUID id){
-        Student student = studentService.findStudentById(id);
-        return new ResponseEntity<>(student, HttpStatus.OK);
-    }
-
     @GetMapping("/add")
     public ModelAndView addStudentForm(){
         ModelAndView mav = new ModelAndView("add-student-form");
@@ -45,6 +40,26 @@ public class StudentController {
     @PostMapping("/save")
     public RedirectView saveStudent(@ModelAttribute Student student){
         studentService.addStudent(student);
+        return new RedirectView("/student/all");
+    }
+
+    @GetMapping("/edit/{id}")
+    public ModelAndView editStudentForm(@PathVariable UUID id){
+        ModelAndView mav = new ModelAndView("edit-student-form");
+        mav.addObject("student", studentService.findStudentById(id));
+        return mav;
+    }
+
+    @PostMapping("/update/{id}")
+    public RedirectView updateStudent(@PathVariable UUID id, @ModelAttribute("student") Student student){
+        Student oldStudent = studentService.findStudentById(id);
+        studentService.updateStudent(oldStudent, student);
+        return new RedirectView("/student/all");
+    }
+
+    @GetMapping("/delete/{id}")
+    public RedirectView deleteStudent(@PathVariable UUID id){
+        studentService.deleteStudent(id);
         return new RedirectView("/student/all");
     }
 }

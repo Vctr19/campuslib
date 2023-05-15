@@ -3,6 +3,7 @@ package br.edu.impacta.campuslib.service;
 import br.edu.impacta.campuslib.exception.UserNotFoundException;
 import br.edu.impacta.campuslib.model.Student;
 import br.edu.impacta.campuslib.repository.StudentRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +27,12 @@ public class StudentService {
         return  studentRepository.findAll();
     }
 
-    public Student updateStudent(Student student){
-        return studentRepository.save(student);
+    public Student updateStudent(Student oldStudent, Student newStudent){
+        oldStudent.setName(newStudent.getName());
+        oldStudent.setStudentGroup(newStudent.getStudentGroup());
+        oldStudent.setIdCard(newStudent.getIdCard());
+
+        return studentRepository.save(newStudent);
     }
 
     public Student findStudentById(UUID id){
@@ -35,6 +40,7 @@ public class StudentService {
                 .orElseThrow(() -> new UserNotFoundException("Studend by ID " + " was not found"));
     }
 
+    @Transactional
     public void deleteStudent(UUID id){
         studentRepository.deleteStudentById(id);
     }

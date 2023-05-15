@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tbl_student")
-public class Student implements Serializable {
+public class Student {
 
     @Id
     @GeneratedValue(generator = "uuid2")
@@ -16,13 +16,13 @@ public class Student implements Serializable {
     @Column(nullable = false, updatable = false)
     private UUID id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "studentGroup")
     private String studentGroup;
 
-    @Column(name = "idCard", nullable = false, updatable = false)
+    @Column(name = "idCard", nullable = false)
     private int idCard;
 
     public Student() {

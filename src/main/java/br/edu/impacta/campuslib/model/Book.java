@@ -14,16 +14,16 @@ public class Book {
     @Column(nullable = false, updatable = false)
     private UUID id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "authorName")
+    @Column(name = "authorName", nullable = false)
     private String authorName;
 
-    @Column(name = "publisher")
+    @Column(name = "publisher", nullable = false)
     private String publisher;
 
-    @Column(name = "quantity")
+    @Column(name = "quantity", nullable = false)
     private int quantity;
 
     public Book() {

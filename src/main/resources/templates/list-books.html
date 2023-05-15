@@ -84,11 +84,11 @@
                 <td th:text="${books.getPublisher}"></td>
                 <td th:text="${books.getQuantity}"></td>
                 <td>
-                    <a href="#" type="button" class="btn btn-warning">
+                    <a th:href="@{/book/edit/{id} (id=${books.getId})}" type="button" class="btn btn-warning">
                         <i class="bi bi-pencil-square"></i>
                         Editar
                     </a>
-                    <a href="#" type="button" class="btn btn-danger">
+                    <a th:href="@{/book/delete/{id} (id=${books.getId})}" type="button" class="btn btn-danger">
                         <i class="bi bi-eraser"></i>
                         Excluir
                     </a>
