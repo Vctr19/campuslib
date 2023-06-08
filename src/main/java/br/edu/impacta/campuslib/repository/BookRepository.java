@@ -9,5 +9,5 @@ import java.util.UUID;
 public interface BookRepository extends JpaRepository<Book, UUID> {
     void deleteBookById(UUID id);
 
-    Optional<Book> findBookById(UUID id);
+    Optional<Book> findBookById(Book id);
 }

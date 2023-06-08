@@ -2,7 +2,6 @@ package br.edu.impacta.campuslib.service;
 
 import br.edu.impacta.campuslib.exception.BookNotFoundException;
 import br.edu.impacta.campuslib.model.Book;
-import br.edu.impacta.campuslib.model.Student;
 import br.edu.impacta.campuslib.repository.BookRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

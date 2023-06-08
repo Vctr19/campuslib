@@ -32,7 +32,7 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li>
-                    <a th:href="@{/student/all}" class="nav-link active" aria-current="page">
+                    <a th:href="@{/student/all}" class="nav-link">
                         <i class="bi bi-file-person"></i>
                         Alunos
                     </a>
@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{/rent/all}" class="nav-link">
+                    <a th:href="@{/rent/all}" class="nav-link active" aria-current="page">
                         <i class="bi bi-alarm"></i>
                         Aluguéis
                     </a>
@@ -56,72 +56,37 @@
 <!-- Header page content -->
 <div class="card mt-sm-4">
     <div class="card-header">
-        <a th:href="@{/student/all}" class="btn btn-primary">
-            <i class="bi bi-people"></i>
-            Lista de Alunos
+        <a th:href="@{/rent/all}" class="btn btn-primary">
+            <i class="bi bi-cart"></i>
+            Lista de Aluguéis
         </a>
         <a href="#" class="btn btn-primary disabled" aria-disabled="true">
-            <i class="bi bi-person-add"></i>
-            Cadastrar Aluno
+            <i class="bi bi-cart-plus"></i>
+            Cadastrar Aluguel
         </a>
     </div>
     <!-- Body page content --->
     <div class="card-body">
-        <form th:action="@{/student/save}" th:object="${student}" method="POST">
+        <form th:action="@{/rent/save}" th:object="${rent}" method="POST">
             <div class="row">
                 <div class="col-md-4">
-                    <label for="inputName" class="form-label">Nome</label>
-                    <input
-                            type="text"
-                            th:field="*{name}"
-                            class="form-control"
-                            id="inputName"
-                            aria-labelledby="nameHelp"
-                            autofocus
-                            required
-                    >
-                    <div class="col-auto">
-                    <span id="nameHelp" class="form-text">
-                        3 a 28 caracteres
-                    </span>
-                    </div>
+                    <label for="dropDownStudents" class="form-label">Selecione um aluno</label>
+                    <select th:field="*{student}" class="form-control" id="dropDownStudents">
+                        <option value="0"></option>
+                        <option th:each="students : ${students}" th:value="${students.getId}" th:text="${students.getName}"></option>
+                    </select>
                 </div>
-                <div class="col-md-2">
-                    <label for="inputIdCard" class="form-label">Registro</label>
-                    <input
-                            type="number"
-                            th:field="*{idCard}"
-                            class="form-control"
-                            id="inputIdCard"
-                            aria-labelledby="idCardHelp"
-                            required
-                    >
-                    <div class="col-auto">
-                    <span id="idCardHelp" class="form-text">
-                        7 dígitos
-                    </span>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <label for="inputClassGroup" class="form-label">Turma</label>
-                    <input
-                            type="text"
-                            th:field="*{studentGroup}"
-                            class="form-control"
-                            id="inputClassGroup"
-                            aria-labelledby="classGroupHelp"
-                            required
-                    >
-                    <div class="col-auto">
-                    <span id="classGroupHelp" class="form-text">
-                        3 caracteres
-                    </span>
-                    </div>
+                <div class="col-md-4">
+                    <label for="dropDownBooks" class="form-label">Selecione um livro</label>
+                    <select th:field="*{book}" class="form-control" id="dropDownBooks">
+                        <option value="0"></option>
+                        <option th:each="books : ${books}" th:value="${books.getId}" th:text="${books.getName}"></option>
+                    </select>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary mt-sm-2">
-                <i class="bi bi-plus-circle"></i>
-                Cadastrar
+                <i class="bi bi-cart-check"></i>
+                Alugar
             </button>
         </form>
     </div>
