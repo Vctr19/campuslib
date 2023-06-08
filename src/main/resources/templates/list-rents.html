@@ -84,8 +84,13 @@
                         <i class="bi bi-arrow-90deg-left"></i>
                         Devolver
                     </a>
-                    <a href="#" type="button" class="btn btn-warning">
+                    <a th:href="@{/rent/by-student/{id} (id=${rents.student.getId})}" type="button" class="btn btn-warning">
                         <i class="bi bi-funnel"></i>
+                        <i class="bi bi-file-person"></i>
+                    </a>
+                    <a th:href="@{/rent/by-book/{id} (id=${rents.book.getId})}" type="button" class="btn btn-warning">
+                        <i class="bi bi-funnel"></i>
+                        <i class="bi bi-book-half"></i>
                     </a>
                 </td>
             </tr>

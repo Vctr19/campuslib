@@ -6,6 +6,7 @@ import br.edu.impacta.campuslib.model.Student;
 import br.edu.impacta.campuslib.service.BookService;
 import br.edu.impacta.campuslib.service.RentService;
 import br.edu.impacta.campuslib.service.StudentService;
+import org.springframework.boot.Banner;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -57,5 +58,21 @@ public class RentController {
     public RedirectView deleteRent(@PathVariable UUID id){
         rentService.deleteRent(id);
         return new RedirectView("/rent/all");
+    }
+
+    @GetMapping("/by-student/{id}")
+    public ModelAndView findAllRentsByStudent(@PathVariable UUID id){
+        ModelAndView mav = new ModelAndView("list-rents-by-student");
+        List<Rent> rentsByStudent = rentService.findAllRentsByStudent(id);
+        mav.addObject("rents", rentsByStudent);
+        return mav;
+    }
+
+    @GetMapping("/by-book/{id}")
+    public ModelAndView findAllRentsByBook(@PathVariable UUID id){
+        ModelAndView mav = new ModelAndView("list-rents-by-book");
+        List<Rent> rentsByBook = rentService.findAllRentsByBook(id);
+        mav.addObject("rents", rentsByBook);
+        return mav;
     }
 }

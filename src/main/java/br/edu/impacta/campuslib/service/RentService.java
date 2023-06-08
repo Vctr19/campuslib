@@ -6,6 +6,7 @@ import br.edu.impacta.campuslib.repository.BookRepository;
 import br.edu.impacta.campuslib.repository.RentRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,5 +44,13 @@ public class RentService {
         Book rentedBook = rent.getBook();
         rentedBook.setQuantity(rentedBook.getQuantity() + 1);
         rentRepository.deleteRentById(id);
+    }
+
+    public List<Rent> findAllRentsByStudent(UUID studentId){
+        return rentRepository.findAllRentsByStudent(studentId);
+    }
+
+    public List<Rent> findAllRentsByBook(UUID bookId){
+        return rentRepository.findAllRentsByBook(bookId);
     }
 }
