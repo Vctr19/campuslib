@@ -6,7 +6,6 @@ import br.edu.impacta.campuslib.repository.BookRepository;
 import br.edu.impacta.campuslib.repository.RentRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,7 +34,7 @@ public class RentService {
 
     public Rent findRentById(UUID id){
         return rentRepository.findRentById(id)
-                .orElseThrow(() -> new RuntimeException("Studend by ID " + " was not found"));
+                .orElseThrow(() -> new RuntimeException("Rent by ID " + id + " was not found"));
     }
 
     @Transactional

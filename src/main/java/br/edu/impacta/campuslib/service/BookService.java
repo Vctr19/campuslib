@@ -1,6 +1,5 @@
 package br.edu.impacta.campuslib.service;
 
-import br.edu.impacta.campuslib.exception.BookNotFoundException;
 import br.edu.impacta.campuslib.model.Book;
 import br.edu.impacta.campuslib.repository.BookRepository;
 import jakarta.transaction.Transactional;
@@ -37,7 +36,7 @@ public class BookService {
     }
     public Book findBookById(UUID id){
         return bookRepository.findById(id)
-                .orElseThrow(() -> new BookNotFoundException("Book by ID " + " was not found"));
+                .orElseThrow(() -> new RuntimeException("Book by ID " + id + " was not found"));
     }
 
     @Transactional

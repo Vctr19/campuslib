@@ -1,6 +1,5 @@
 package br.edu.impacta.campuslib.service;
 
-import br.edu.impacta.campuslib.exception.UserNotFoundException;
 import br.edu.impacta.campuslib.model.Student;
 import br.edu.impacta.campuslib.repository.StudentRepository;
 import jakarta.transaction.Transactional;
@@ -37,7 +36,7 @@ public class StudentService {
 
     public Student findStudentById(UUID id){
         return studentRepository.findStudentById(id)
-                .orElseThrow(() -> new UserNotFoundException("Studend by ID " + " was not found"));
+                .orElseThrow(() -> new RuntimeException("Student by ID " + id + " was not found"));
     }
 
     @Transactional
