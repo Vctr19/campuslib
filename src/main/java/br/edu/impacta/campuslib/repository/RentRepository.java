@@ -15,9 +15,9 @@ public interface RentRepository extends JpaRepository<Rent, UUID> {
     Optional<Rent> findRentById(UUID id);
 
 
-    @Query(value = "SELECT * FROM tbl_rent WHERE fk_student = :idStudent", nativeQuery = true)
+    @Query(value = "SELECT id, fk_student, fk_book FROM tbl_rent WHERE fk_student = :idStudent", nativeQuery = true)
     List<Rent> findAllRentsByStudent(@Param("idStudent") UUID idStudent);
 
-    @Query(value = "SELECT * FROM tbl_rent WHERE fk_book = :idBook", nativeQuery = true)
+    @Query(value = "SELECT id, fk_student, fk_book FROM tbl_rent WHERE fk_book = :idBook", nativeQuery = true)
     List<Rent> findAllRentsByBook(@Param("idBook") UUID idBook);
 }

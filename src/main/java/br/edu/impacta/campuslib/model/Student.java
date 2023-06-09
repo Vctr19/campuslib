@@ -10,6 +10,9 @@ import java.util.UUID;
 @Table(name = "tbl_student")
 public class Student {
 
+    enum StudentGroup {
+        ADS, RED, SEC,
+    }
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
@@ -20,7 +23,8 @@ public class Student {
     private String name;
 
     @Column(name = "studentGroup")
-    private String studentGroup;
+    @Enumerated(EnumType.STRING)
+    private StudentGroup studentGroup;
 
     @Column(name = "idCard", nullable = false)
     private int idCard;
@@ -28,7 +32,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(String name, String studentGroup, int idCard) {
+    public Student(String name, StudentGroup studentGroup, int idCard) {
         this.name = name;
         this.studentGroup = studentGroup;
         this.idCard = idCard;
@@ -50,11 +54,11 @@ public class Student {
         this.name = name;
     }
 
-    public String getStudentGroup() {
+    public StudentGroup getStudentGroup() {
         return studentGroup;
     }
 
-    public void setStudentGroup(String studentGroup) {
+    public void setStudentGroup(StudentGroup studentGroup) {
         this.studentGroup = studentGroup;
     }
 
@@ -64,6 +68,10 @@ public class Student {
 
     public void setIdCard(int idCard) {
         this.idCard = idCard;
+    }
+
+    public StudentGroup[] getStudentGroupList(){
+        return StudentGroup.values();
     }
 
     @Override

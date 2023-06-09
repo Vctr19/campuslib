@@ -96,20 +96,11 @@
                     </div>
                 </div>
                 <div class="col-md-1">
-                    <label for="inputClassGroup" class="form-label">Turma</label>
-                    <input
-                            type="text"
-                            th:field="*{studentGroup}"
-                            class="form-control"
-                            id="inputClassGroup"
-                            aria-labelledby="classGroupHelp"
-                            required
-                    >
-                    <div class="col-auto">
-                    <span id="classGroupHelp" class="form-text">
-                        3 caracteres
-                    </span>
-                    </div>
+                    <label for="inputIdCard" class="form-label">Registro</label>
+                    <select th:field="*{studentGroup}" class="form-control" id="dropDownBooks">
+                        <option value="0"></option>
+                        <option th:each="i : ${student.studentGroupList}" th:value="${i}" th:text="${i}"></option>
+                    </select>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary mt-sm-2">
