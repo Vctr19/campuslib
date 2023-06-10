@@ -74,13 +74,4 @@ public class Student {
         return StudentGroup.values();
     }
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", studentGroup='" + studentGroup + '\'' +
-                ", studentID=" + idCard +
-                '}';
-    }
 }

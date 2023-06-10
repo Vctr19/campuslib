@@ -103,7 +103,7 @@
                     </div>
                 </div>
                 <div class="col-md-1">
-                    <label for="inputIdCard" class="form-label">Registro</label>
+                    <label for="inputIdCard" class="form-label">Turma</label>
                     <select th:field="*{studentGroup}" class="form-control" id="dropDownBooks">
                         <option value="0"></option>
                         <option th:each="i : ${student.studentGroupList}" th:value="${i}" th:text="${i}"></option>

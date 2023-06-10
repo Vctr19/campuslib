@@ -54,12 +54,4 @@ public class Rent {
         this.book = book;
     }
 
-    @Override
-    public String toString() {
-        return "Rent{" +
-                "id=" + id +
-                ", fkIdStudent=" + student +
-                ", fkIdBook=" + book +
-                '}';
-    }
 }
