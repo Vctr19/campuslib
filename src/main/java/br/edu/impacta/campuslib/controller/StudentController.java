@@ -2,9 +2,6 @@ package br.edu.impacta.campuslib.controller;
 
 import br.edu.impacta.campuslib.model.Student;
 import br.edu.impacta.campuslib.service.StudentService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -32,8 +29,7 @@ public class StudentController {
     @GetMapping("/add")
     public ModelAndView addStudentForm(){
         ModelAndView mav = new ModelAndView("add-student-form");
-        Student student = new Student();
-        mav.addObject("student", student);
+        mav.addObject("student", new Student());
         return mav;
     }
 

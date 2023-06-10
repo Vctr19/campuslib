@@ -6,7 +6,6 @@ import br.edu.impacta.campuslib.model.Student;
 import br.edu.impacta.campuslib.service.BookService;
 import br.edu.impacta.campuslib.service.RentService;
 import br.edu.impacta.campuslib.service.StudentService;
-import org.springframework.boot.Banner;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -31,20 +30,16 @@ public class RentController {
     @GetMapping("/all")
     public ModelAndView getAllRents(){
         ModelAndView mav = new ModelAndView("list-rents");
-        List<Rent> rents = rentService.findAllRents();
-        mav.addObject("rents", rents);
+        mav.addObject("rents", rentService.findAllRents());
         return mav;
     }
 
     @GetMapping("/add")
     public ModelAndView addRentForm(){
         ModelAndView mav = new ModelAndView("add-rent-form");
-        Rent rent = new Rent();
-        List<Student> students = studentService.findAllStudents();
-        List<Book> books = bookService.findAllBooks();
-        mav.addObject("rent", rent);
-        mav.addObject("students", students);
-        mav.addObject("books", books);
+        mav.addObject("rent", new Rent());
+        mav.addObject("students", studentService.findAllStudents());
+        mav.addObject("books", bookService.findAllBooks());
         return mav;
     }
 
@@ -63,16 +58,14 @@ public class RentController {
     @GetMapping("/by-student/{id}")
     public ModelAndView findAllRentsByStudent(@PathVariable UUID id){
         ModelAndView mav = new ModelAndView("list-rents-by-student");
-        List<Rent> rentsByStudent = rentService.findAllRentsByStudent(id);
-        mav.addObject("rents", rentsByStudent);
+        mav.addObject("rents", rentService.findAllRentsByStudent(id));
         return mav;
     }
 
     @GetMapping("/by-book/{id}")
     public ModelAndView findAllRentsByBook(@PathVariable UUID id){
         ModelAndView mav = new ModelAndView("list-rents-by-book");
-        List<Rent> rentsByBook = rentService.findAllRentsByBook(id);
-        mav.addObject("rents", rentsByBook);
+        mav.addObject("rents", rentService.findAllRentsByBook(id));
         return mav;
     }
 }

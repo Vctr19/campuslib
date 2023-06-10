@@ -1,6 +1,10 @@
-FROM maven:3.9-sapmachine-17 AS build
-RUN mvn clean install
+FROM mysql:5.7
 
-FROM amazoncorretto:17.0.6-al2023 AS deploy
-COPY target/*.jar app.jar
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+# Env vars
+ENV MYSQL_USER=letmein
+ENV MYSQL_PASSWORD=letmein
+ENV MYSQL_DATABASE=campuslib
+ENV MYSQL_ROOT_PASSWORD=root
+
+# Exposing the port
+EXPOSE 3306
